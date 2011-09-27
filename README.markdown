@@ -26,7 +26,7 @@ and outputs json
     z = Zendesk::Main.new('subdomain', 'username', 'password', :format => 'json')
 
 For the most part all functions is based on the following functions
-REST function_names = %{user, organization, group, ticket,attachement, tag, forum, entries, search}
+REST function_names = %{user, organization, group, ticket, attachment, tag, forum, entries, search}
 
 ### Show
     z.get_function_name(user_id)
@@ -44,7 +44,8 @@ with hash(array is not supported yet)
     z.create_function_name({:email => 'email@company.com', :name => 'John Doe'})
 
 ### Update
-Not supported yet
+    z.update_ticket(id, options)
+e.g. z.update_ticket({'status_id' => 3, 'comment' => {'value' => "Closed at #{Time.now.strftime('%D')}"}})
 
 ### Destroy
     z.destroy_function_name(id)
@@ -58,6 +59,6 @@ The Zendesk library comes with a convenient console for testing and quick comman
 
 From /
 
-    irb -r lib/zendesk/console
+    irb -r lib/console
     z = Zendesk::Main.new('accountname', 'username', 'password')
     z.get_users
